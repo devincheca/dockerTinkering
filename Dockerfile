@@ -1,2 +1,8 @@
-FROM busybox
-CMD echo "Hello world! This is my first Docker image."
+FROM node:10
+# Create app directory
+WORKDIR /usr/src/app
+COPY ./basicapp/package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD [ "npm", "start" ]
